@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainable Development Goals - Global Impact</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Righteous&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'righteous': '"Righteous", sans-serif',
+                        'poppins': '"Poppins", serif'
+                    },
+                    colors: {
+                        'sdg-dark': '#463f3a',
+                        'sdg-light': '#8a817c',
+                        'sdg-beige': '#bcb8b1',
+                        'sdg-offwhite': '#f4f3ee',
+                        'sdg-pink': '#e0afa0'
+                    }
+                }
+            }
+        };
+        gsap.registerPlugin(ScrollTrigger);
+    </script>
+    <style>
+        @layer components {
+            .sdg-gallery {
+                @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6;
+            }
+            .sdg-item {
+                @apply bg-sdg-beige rounded-lg overflow-hidden shadow-lg transition-transform duration-300 ease-in-out;
+            }
+            .sdg-item img {
+                @apply w-full h-32 object-cover transition-transform duration-300 ease-in-out;
+            }
+            .sdg-item p {
+                @apply p-4 text-center font-bold text-lg;
+            }
+            .sdg-item:hover {
+                transform: scale(1.05);
+                background-color: #e0afa0;
+            }
+            .sdg-item .img-wrapper {
+                @apply w-full h-32 relative overflow-hidden;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 50;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="font-poppins bg-sdg-offwhite text-gray-800 overflow-x-hidden">
+    <div class="min-w-[320px]">
+        <header class="relative min-h-screen flex items-center justify-center text-center px-4 py-8">
+            <div class="absolute inset-0 bg-gradient-to-br from-sdg-dark/10 to-sdg-light/10 z-0"></div>
+            <div class="relative z-10 max-w-4xl">
+                <h1 class="font-righteous text-4xl md:text-5xl lg:text-6xl font-bold mb-4 opacity-0 translate-y-10" id="hero-title">
+                    Discover and Act on the 17 Sustainable Development Goals
+                </h1>
+                <p class="text-lg md:text-xl lg:text-2xl mb-6 max-w-3xl mx-auto opacity-0 translate-y-10" id="hero-subtitle">
+                    Together, we can build a better future for all. Explore the 17 Global Goals designed to end poverty, protect the planet, and ensure prosperity for all.
+                </p>
+                <a href="#gallery" class="inline-block bg-sdg-dark text-white text-lg py-3 px-6 rounded-md hover:bg-sdg-light transition-all duration-300 opacity-0 translate-y-10" id="hero-cta">
+                    Explore Goals
+                </a>
+            </div>
+        </header>
+
+        <section class="p-6" id="gallery">
+            <div class="sdg-gallery">
+                <!-- SDG 1: No Poverty -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="1">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/no-poverty.jpg" alt="SDG 1">
+                        <p class="z-10 text-center">No Poverty</p>
+                    </a>
+                </div>
+                <!-- SDG 2: Zero Hunger -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="2">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/hunger.jpg" alt="SDG 2">
+                        <p class="z-10 text-center">Zero Hunger</p>
+                    </a>
+                </div>
+                <!-- SDG 3: Good Health and Well-being -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="3">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/well-being.jpg" alt="SDG 3">
+                        <p class="z-10 text-center">Good Health and Well-being</p>
+                    </a>
+                </div>
+                <!-- SDG 4: Quality Education -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="4">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/eucation.jpg" alt="SDG 4">
+                        <p class="z-10 text-center">Quality Education</p>
+                    </a>
+                </div>
+                <!-- SDG 5: Gender Equality -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="5">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/equality.jpg" alt="SDG 5">
+                        <p class="z-10 text-center">Gender Equality</p>
+                    </a>
+                </div>
+                <!-- SDG 6: Clean Water and Sanitation -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="6">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/sanitation.jpg" alt="SDG 6">
+                        <p class="z-10 text-center">Clean Water and Sanitation</p>
+                    </a>
+                </div>
+                <!-- SDG 7: Affordable and Clean Energy -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="7">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/clean.jpg" alt="SDG 7">
+                        <p class="z-10 text-center">Affordable and Clean Energy</p>
+                    </a>
+                </div>
+                <!-- SDG 8: Decent Work and Economic Growth -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="8">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/decent.jpg" alt="SDG 8">
+                        <p class="z-10 text-center">Decent Work and Economic Growth</p>
+                    </a>
+                </div>
+                <!-- SDG 9: Industry, Innovation, and Infrastructure -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="9">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/Industry, Innovation, Infrastructure.jpg" alt="SDG 9">
+                        <p class="z-10 text-center">Industry, Innovation, and Infrastructure</p>
+                    </a>
+                </div>
+                <!-- SDG 10: Reduced Inequalities -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="10">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/inequality.jpg" alt="SDG 10">
+                        <p class="z-10 text-center">Reduced Inequalities</p>
+                    </a>
+                </div>
+                <!-- SDG 11: Sustainable Cities and Communities -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="11">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/sustainabile-city.jpg" alt="SDG 11">
+                        <p class="z-10 text-center">Sustainable Cities and Communities</p>
+                    </a>
+                </div>
+                <!-- SDG 12: Responsible Consumption and Production -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="12">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/Consupmtion.jpg" alt="SDG 12">
+                        <p class="z-10 text-center">Responsible Consumption and Production</p>
+                    </a>
+                </div>
+                <!-- SDG 13: Climate Action -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="13">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/Climate-action.jpEg" alt="SDG 13">
+                        <p class="z-10 text-center">Climate Action</p>
+                    </a>
+                </div>
+                <!-- SDG 14: Life Below Water -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="14">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/life-on-water.jpg" alt="SDG 14">
+                        <p class="z-10 text-center">Life Below Water</p>
+                    </a>
+                </div>
+                <!-- SDG 15: Life on Land -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="15">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/life-on-land.jpg" alt="SDG 15">
+                        <p class="z-10 text-center">Life on Land</p>
+                    </a>
+                </div>
+                <!-- SDG 16: Peace, Justice, and Strong Institutions -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="16">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/peace-and-justice.png" alt="SDG 16">
+                        <p class="z-10 text-center">Peace, Justice, and Strong Institutions</p>
+                    </a>
+                </div>
+                <!-- SDG 17: Partnerships for the Goals -->
+                <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="17">
+                    <a href="#" class="w-full h-full flex items-center justify-center">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/partnership.jpg" alt="SDG 17">
+                        <p class="z-10 text-center">Partnerships for the Goals</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div class="modal" id="sdg-modal">
+            <div class="modal-content text-justify">
+                <h2 id="modal-title" class="text-2xl font-bold mb-4"></h2>
+                <p id="modal-content"></p>
+                <button id="close-modal" class="mt-4 bg-sdg-dark text-white py-2 px-4 rounded-md">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="py-12">
+        <h2 class="text-center text-3xl font-bold mb-8 text-sdg-dark">Meet Our Team</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Team Member 1 -->
+            <div class="text-center">
+                <img class="w-32 h-32 rounded-full mx-auto mb-4 object-cover" src="./images/nuestra.jpg" alt="Team Member 1">
+                <h3 class="font-semibold text-sdg-dark">Nuestra Elizabeth B. Salve</h3>
+                <p class="text-sdg-light">Contributor</p>
+            </div>
+    
+            <!-- Team Member 2 -->
+            <div class="text-center">
+                <img class="w-32 h-32 rounded-full mx-auto mb-4" src="./images/lababit.jpg" alt="Team Member 2">
+                <h3 class="font-semibold text-sdg-dark">LABABIT, JAN VINCENT A.</h3>
+                <p class="text-sdg-light">Java Master</p>
+            </div>
+    
+            <!-- Team Member 3 -->
+            <div class="text-center">
+                <img class="w-32 h-32 rounded-full mx-auto mb-4 object-cover" src="./images/arnel.jpg" alt="Team Member 3">
+                <h3 class="font-semibold text-sdg-dark">ARNEL DIANA</h3>
+                <p class="text-sdg-light">Contributor</p>
+            </div>
+    
+            <!-- Team Member 4 -->
+            <div class="text-center">
+                <img class="w-32 h-32 rounded-full mx-auto mb-4 object-cover" src="./images/glenn.jpg" alt="Team Member 4">
+                <h3 class="font-semibold text-sdg-dark">Anthony Glenn</h3>
+                <p class="text-sdg-light">Contributor</p>
+            </div>
+        </div>
+    </section>
+    
+
+
+    <footer class=" text-black py-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p class="text-sm">&copy; 2024 Your Company. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.fromTo('#hero-title', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
+            gsap.fromTo('#hero-subtitle', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: 'power3.out' });
+            gsap.fromTo('#hero-cta', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, delay: 0.6, ease: 'power3.out' });
+
+            const sdgBoxes = document.querySelectorAll('.sdg-item');
+            const modal = document.getElementById('sdg-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalContent = document.getElementById('modal-content');
+
+            const sdgDescriptions = {
+                1: "The 1st Sustainable Development Goal aims to end poverty in all its forms worldwide. It is important because poverty deprives people of basic needs like food, shelter, healthcare, and education, leading to inequality and vulnerability. Reducing poverty improves quality of life, promotes economic growth, and creates more stable and equitable societies, laying the foundation for achieving other global goals.",
+                2: "The 2nd Sustainable Development Goal focuses on ending hunger, achieving food security, improving nutrition, and promoting sustainable agriculture. It is important because hunger and malnutrition harm millions of people, particularly children, affecting their health, development, and productivity. Addressing hunger ensures everyone has access to nutritious food, reduces poverty, and supports sustainable farming practices, which are essential for building a healthier and more resilient world.",
+                3: "The 3rd Sustainable Development Goal aims to ensure healthy lives and promote well-being for all at all ages. It is important because good health is essential for individuals to thrive, work, and contribute to society. Achieving this goal reduces preventable deaths, combats diseases, and improves life expectancy. Healthy populations lead to stronger communities and economies, making it critical for sustainable development.",
+                4: "The 4th Sustainable Development Goal aims to ensure inclusive and equitable quality education and promote lifelong learning opportunities for all. It is important because education empowers individuals with the knowledge and skills needed to improve their lives and contribute to society. It reduces inequality, boosts economic growth, and fosters innovation. Achieving this goal is essential for breaking the cycle of poverty and building sustainable, inclusive communities.",
+                5: "The 5th Sustainable Development Goal aims to achieve gender equality and empower all women and girls. It is important because gender inequality limits opportunities for women and girls, leading to discrimination, violence, and reduced access to education, healthcare, and economic opportunities. Promoting gender equality ensures that everyone, regardless of gender, has the same opportunities and rights, leading to stronger, more inclusive societies and sustainable development for all.",
+                6: "The 6th Sustainable Development Goal aims to ensure the availability and sustainable management of water and sanitation for all. It is important because access to clean water and sanitation is fundamental for health, well-being, and economic development. Lack of clean water and sanitation leads to waterborne diseases, malnutrition, and environmental degradation. Ensuring universal access to these resources is essential for improving public health, reducing poverty, and promoting sustainable ecosystems.",
+                7: "The 7th Sustainable Development Goal aims to ensure access to affordable, reliable, sustainable, and modern energy for all. It is important because energy is crucial for economic growth, improving living standards, and enhancing education and healthcare. Access to clean energy helps reduce reliance on fossil fuels, lowers greenhouse gas emissions, and combats climate change. Achieving this goal promotes environmental sustainability, reduces energy poverty, and contributes to a more equitable and prosperous world.",
+                8: "The 8th Sustainable Development Goal aims to promote sustained, inclusive, and sustainable economic growth, full and productive employment, and decent work for all. It is important because creating decent jobs and fostering economic growth is essential for reducing poverty and inequality. This goal ensures that people have access to fair wages, safe working conditions, and opportunities for advancement, contributing to overall social well-being and economic stability. It also helps build resilient economies that can adapt to challenges such as technological change and climate impacts.",
+                9: "The 9th Sustainable Development Goal aims to build resilient infrastructure, promote inclusive and sustainable industrialization, and foster innovation. It is important because strong infrastructure and innovation drive economic growth, create jobs, and improve living standards. Sustainable industrialization and the development of new technologies help reduce environmental impacts while enhancing productivity and access to services like transportation, communication, and energy. Achieving this goal supports long-term development and resilience, particularly in the face of global challenges like climate change and urbanization.",
+                10: "This sustainable development goal focuses on reducing inequalities within and among countries. Income inequality, the refugee crises, and inequality indexes all show that certain areas and countries are highly more beneficial to live in than others. Living standards between countries are very unbalanced.",
+                11: "This goal promotes making cities and human settlements safer, resilient, and sustainable through use of national urban policies, more access to public spaces, convenient public transportation, and the reduction of slums.",
+                12: "Ensuring sustainable consumption and production patterns, as a goal, aims to reduce climate change and negative environmental impacts.",
+                13: "Climate action is a goal involving the fight against climate change and its impacts. Rising greenhouse gas emissions, an average global temperature increase, and increased spending due to climate change are all negative results of climate change.",
+                14: "The Life Below Water goal focuses on conserving and sustainably using our oceans, seas and marine resources for sustainable development. We, as a population, rely heavily on our oceans for food, tourism, recreational activities, and global trade. In fact, 3 billion people rely on the ocean for their livelihood. However, our oceans are under severe threat. Over half of key marine biodiversity areas are unprotected, and dead zones, zones lacking oxygen to support marine life, are rising. It is thus imperative we protect our oceans better.",
+                15: "This goal overall promotes the health of land life. It includes protecting, restoring, and promoting land ecosystems, managing forests sustainably. Combatting desertification and halting and reversing land degradation and biodiversity loss. With many species under threat and ever-increasing biodiversity loss, it is essential we take better care of land ecosystems.",
+                16: "This goal involves reducing conflict, insecurity, and weak institutions by means of promoting peace and inclusivity for sustainable development and justice for all.",
+                17: "This last goal aims to help realize strong partnership and global cooperation for the SDGs."
+            };
+
+
+            sdgBoxes.forEach(box => {
+                box.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevents scrolling to top
+                    const sdgNumber = box.dataset.sdg;
+                    modalTitle.textContent = `Goal ${sdgNumber}`;
+                    modalContent.textContent = sdgDescriptions[sdgNumber];
+                    modal.style.display = 'flex';
+                });
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
