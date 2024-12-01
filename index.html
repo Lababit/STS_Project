@@ -287,6 +287,9 @@
     const modalContent = document.getElementById('modal-content');
     const prevBtn = document.getElementById('prev-sdg');
     const nextBtn = document.getElementById('next-sdg');
+                      gsap.fromTo('#hero-title', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
+            gsap.fromTo('#hero-subtitle', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: 'power3.out' });
+            gsap.fromTo('#hero-cta', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, delay: 0.6, ease: 'power3.out' });
 
     const sdgDescriptions = {
         1: "The 1st Sustainable Development Goal aims to end poverty in all its forms worldwide. It is important because poverty deprives people of basic needs like food, shelter, healthcare, and education, leading to inequality and vulnerability. Reducing poverty improves quality of life, promotes economic growth, and creates more stable and equitable societies, laying the foundation for achieving other global goals.",
