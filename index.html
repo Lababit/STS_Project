@@ -183,21 +183,21 @@
                 <!-- SDG 13: Climate Action -->
                 <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="13">
                     <a href="#" class="w-full h-full flex items-center justify-center">
-                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/Climate-action.jpeg" alt="SDG 13">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/Climate-action.jpEg" alt="SDG 13">
                         <p class="z-10 text-center">Climate Action</p>
                     </a>
                 </div>
                 <!-- SDG 14: Life Below Water -->
                 <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="14">
                     <a href="#" class="w-full h-full flex items-center justify-center">
-                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/Life-on-Water.jpg" alt="SDG 14">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/life-on-water.jpg" alt="SDG 14">
                         <p class="z-10 text-center">Life Below Water</p>
                     </a>
                 </div>
                 <!-- SDG 15: Life on Land -->
                 <div class="relative overflow-hidden bg-sdg-dark text-white flex items-center justify-center h-40 border rounded-lg cursor-pointer hover:bg-sdg-pink transition-all sdg-item" data-sdg="15">
                     <a href="#" class="w-full h-full flex items-center justify-center">
-                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/Life-on-Land.jpg" alt="SDG 15">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-25" src="./images/life-on-land.jpg" alt="SDG 15">
                         <p class="z-10 text-center">Life on Land</p>
                     </a>
                 </div>
@@ -218,14 +218,21 @@
             </div>
         </section>
 
-        <!-- Modal -->
-        <div class="modal" id="sdg-modal">
-            <div class="modal-content text-justify">
-                <h2 id="modal-title" class="text-2xl font-bold mb-4"></h2>
-                <p id="modal-content"></p>
-                <button id="close-modal" class="mt-4 bg-sdg-dark text-white py-2 px-4 rounded-md">Close</button>
-            </div>
-        </div>
+  <!-- Modal with Navigation -->
+  <div class="modal" id="sdg-modal">
+    <div class="modal-content text-justify relative">
+        <button id="prev-sdg" class="absolute left-0 bottom-2 transform -translate-y-1/2 bg-sdg-dark text-white p-2 rounded-full z-10 ml-2">
+            ←
+        </button>
+        <button id="next-sdg" class="absolute right-0 bottom-2 transform -translate-y-1/2 bg-sdg-dark text-white p-2 rounded-full z-10 mr-2">
+            →
+        </button>
+        <h2 id="modal-title" class="text-2xl font-bold mb-4 text-center"></h2>
+        <p id="modal-content" class="mb-4"></p>
+        <button id="close-modal" class="mx-auto block bg-sdg-dark text-white py-2 px-4 rounded-md">Close</button>
+    </div>
+</div>
+</div>
     </div>
 
     <section class="py-12">
@@ -268,60 +275,76 @@
             <p class="text-sm">&copy; 2024 Your Company. All rights reserved.</p>
         </div>
     </footer>
+    
+
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            gsap.fromTo('#hero-title', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
-            gsap.fromTo('#hero-subtitle', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: 'power3.out' });
-            gsap.fromTo('#hero-cta', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, delay: 0.6, ease: 'power3.out' });
+      document.addEventListener("DOMContentLoaded", () => {
+    const sdgBoxes = document.querySelectorAll('.sdg-item');
+    const modal = document.getElementById('sdg-modal');
+    const closeModalBtn = document.getElementById('close-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+    const prevBtn = document.getElementById('prev-sdg');
+    const nextBtn = document.getElementById('next-sdg');
 
-            const sdgBoxes = document.querySelectorAll('.sdg-item');
-            const modal = document.getElementById('sdg-modal');
-            const closeModalBtn = document.getElementById('close-modal');
-            const modalTitle = document.getElementById('modal-title');
-            const modalContent = document.getElementById('modal-content');
+    const sdgDescriptions = {
+        1: "The 1st Sustainable Development Goal aims to end poverty in all its forms worldwide. It is important because poverty deprives people of basic needs like food, shelter, healthcare, and education, leading to inequality and vulnerability. Reducing poverty improves quality of life, promotes economic growth, and creates more stable and equitable societies, laying the foundation for achieving other global goals.",
+        2: "The 2nd Sustainable Development Goal focuses on ending hunger, achieving food security, improving nutrition, and promoting sustainable agriculture. It is important because hunger and malnutrition harm millions of people, particularly children, affecting their health, development, and productivity. Addressing hunger ensures everyone has access to nutritious food, reduces poverty, and supports sustainable farming practices, which are essential for building a healthier and more resilient world.",
+        3: "The 3rd Sustainable Development Goal aims to ensure healthy lives and promote well-being for all at all ages. It is important because good health is essential for individuals to thrive, work, and contribute to society. Achieving this goal reduces preventable deaths, combats diseases, and improves life expectancy. Healthy populations lead to stronger communities and economies, making it critical for sustainable development.",
+        4: "The 4th Sustainable Development Goal aims to ensure inclusive and equitable quality education and promote lifelong learning opportunities for all. It is important because education empowers individuals with the knowledge and skills needed to improve their lives and contribute to society. It reduces inequality, boosts economic growth, and fosters innovation. Achieving this goal is essential for breaking the cycle of poverty and building sustainable, inclusive communities.",
+        5: "The 5th Sustainable Development Goal aims to achieve gender equality and empower all women and girls. It is important because gender inequality limits opportunities for women and girls, leading to discrimination, violence, and reduced access to education, healthcare, and economic opportunities. Promoting gender equality ensures that everyone, regardless of gender, has the same opportunities and rights, leading to stronger, more inclusive societies and sustainable development for all.",
+        6: "The 6th Sustainable Development Goal aims to ensure the availability and sustainable management of water and sanitation for all. It is important because access to clean water and sanitation is fundamental for health, well-being, and economic development. Lack of clean water and sanitation leads to waterborne diseases, malnutrition, and environmental degradation. Ensuring universal access to these resources is essential for improving public health, reducing poverty, and promoting sustainable ecosystems.",
+        7: "The 7th Sustainable Development Goal aims to ensure access to affordable, reliable, sustainable, and modern energy for all. It is important because energy is crucial for economic growth, improving living standards, and enhancing education and healthcare. Access to clean energy helps reduce reliance on fossil fuels, lowers greenhouse gas emissions, and combats climate change. Achieving this goal promotes environmental sustainability, reduces energy poverty, and contributes to a more equitable and prosperous world.",
+        8: "The 8th Sustainable Development Goal aims to promote sustained, inclusive, and sustainable economic growth, full and productive employment, and decent work for all. It is important because creating decent jobs and fostering economic growth is essential for reducing poverty and inequality. This goal ensures that people have access to fair wages, safe working conditions, and opportunities for advancement, contributing to overall social well-being and economic stability. It also helps build resilient economies that can adapt to challenges such as technological change and climate impacts.",
+        9: "The 9th Sustainable Development Goal aims to build resilient infrastructure, promote inclusive and sustainable industrialization, and foster innovation. It is important because strong infrastructure and innovation drive economic growth, create jobs, and improve living standards. Sustainable industrialization and the development of new technologies help reduce environmental impacts while enhancing productivity and access to services like transportation, communication, and energy. Achieving this goal supports long-term development and resilience, particularly in the face of global challenges like climate change and urbanization.",
+        10: "Reduced Inequalities Reduced Inequalities (SDG 10) is pivotal for sustainable development. By addressing disparities, we foster social cohesion, boost economic growth, and ensure environmental sustainability. This sustainable development goal focuses on reducing inequalities within and among countries. Income inequality, the refugee crises, and inequality indexes all show that certain areas and countries are highly more beneficial to live in than others. Living standards between countries are very unbalanced. Empowering marginalized groups, promoting equal opportunities, and strengthening social protection systems are key strategies. ",
+        11: "Sustainable Cities and Communities (SDG 11) is crucial for a sustainable future. This goal promotes making cities and human settlements safer, resilient, and sustainable through the use of national urban policies, more access to public spaces, convenient public transportation, and the reduction of slums. As urbanization accelerates, creating inclusive, safe, resilient, and sustainable cities is essential. By focusing on affordable housing, accessible transportation, green spaces, and disaster risk reduction, we can improve quality of life, reduce environmental impact, and foster economic growth. Sustainable cities are not only vital for urban dwellers but also contribute to global sustainability by mitigating climate change and promoting resource efficiency.",
+        12: "Responsible Consumption and Production (SDG 12) is essential for a sustainable future. Ensuring sustainable consumption and production patterns, as a goal, aims to reduce climate change and negative environmental impacts. By promoting sustainable lifestyles, reducing waste, and improving resource efficiency, we can minimize our environmental footprint. This involves transitioning to a circular economy, where resources are used responsibly and waste is minimized. By adopting sustainable practices, we can protect our planet, conserve natural resources, and ensure a healthy environment for future generations.",
+        13: "Climate Action (SDG 13) is critical for safeguarding a sustainable future. Climate action is a goal involving the fight against climate change and its impacts. Rising greenhouse gas emissions, an average global temperature increase, and increased spending due to climate change are all negative results of climate change. By taking urgent action to combat climate change and its impacts, we can protect our planet and safeguard future generations. This involves transitioning to clean and renewable energy sources, reducing greenhouse gas emissions, and building resilience to climate-related disasters. By addressing climate change, we can preserve ecosystems, protect biodiversity, and create a more sustainable and equitable world.",
+        14: "Life Below Water (SDG 14) is crucial for the health of our planet. The Life Below Water goal focuses on conserving and sustainably using our oceans, seas, and marine resources for sustainable development. We, as a population, rely heavily on our oceans for food, tourism, recreational activities, and global trade. In fact, 3 billion people rely on the ocean for their livelihood. However, our oceans are under severe threat. Over half of key marine biodiversity areas are unprotected, and dead zones, areas lacking oxygen to support marine life, are rising. It is thus imperative that we protect our oceans better. Oceans regulate the climate, provide food and livelihoods for billions, and support vast marine biodiversity. By conserving and sustainably using marine resources, we can protect biodiversity, mitigate climate change, and ensure the long-term health of our oceans. This involves reducing pollution, overfishing, and destructive fishing practices, as well as establishing marine protected areas. A healthy ocean is essential for a sustainable future.",
+        15: "Life on Land (SDG 15) is essential for the health of our planet and the well-being of humanity. This goal promotes the health of land life by protecting, restoring, and promoting land ecosystems, managing forests sustainably, combating desertification, and halting and reversing land degradation and biodiversity loss. With many species under threat and increasing biodiversity loss, it is crucial that we take better care of land ecosystems. Terrestrial ecosystems provide essential services, including clean air, water, soil fertility, and biodiversity. By protecting and restoring these ecosystems, we can mitigate climate change, prevent land degradation, and safeguard the livelihoods of millions. This includes sustainable forest management, combating desertification, and protecting endangered species.",
+        16: "Peace, Justice, and Strong Institutions (SDG 16) is fundamental for sustainable development. This goal involves reducing conflict, insecurity, and weak institutions by promoting peace and inclusivity for sustainable development and justice for all. A peaceful and inclusive society, where everyone has equal access to justice, is essential for progress. Strong institutions, free from corruption and violence, are crucial for good governance and the delivery of public services. By promoting the rule of law, reducing crime and corruption, and ensuring equal access to justice, we can create a safer, more equitable, and prosperous world for all.",
+        17: "Partnership for the Goals (SDG 17) is essential for achieving the ambitious targets of the Sustainable Development Goals. By fostering global partnerships, we can mobilize resources, share knowledge and technology, and implement effective solutions. This goal aims to help realize strong partnership and global cooperation for the SDGs. Fostering global partnerships involves cooperation, resource mobilization, and data-driven decision-making. This goal promotes international collaboration, capacity building, and sustainable development. Strong partnerships between governments, civil society, the private sector, and international organizations are crucial for addressing complex global challenges. Through collaboration, we can accelerate progress towards a sustainable future for all."
+    };
 
-            const sdgDescriptions = {
-                1: "The 1st Sustainable Development Goal aims to end poverty in all its forms worldwide. It is important because poverty deprives people of basic needs like food, shelter, healthcare, and education, leading to inequality and vulnerability. Reducing poverty improves quality of life, promotes economic growth, and creates more stable and equitable societies, laying the foundation for achieving other global goals.",
-                2: "The 2nd Sustainable Development Goal focuses on ending hunger, achieving food security, improving nutrition, and promoting sustainable agriculture. It is important because hunger and malnutrition harm millions of people, particularly children, affecting their health, development, and productivity. Addressing hunger ensures everyone has access to nutritious food, reduces poverty, and supports sustainable farming practices, which are essential for building a healthier and more resilient world.",
-                3: "The 3rd Sustainable Development Goal aims to ensure healthy lives and promote well-being for all at all ages. It is important because good health is essential for individuals to thrive, work, and contribute to society. Achieving this goal reduces preventable deaths, combats diseases, and improves life expectancy. Healthy populations lead to stronger communities and economies, making it critical for sustainable development.",
-                4: "The 4th Sustainable Development Goal aims to ensure inclusive and equitable quality education and promote lifelong learning opportunities for all. It is important because education empowers individuals with the knowledge and skills needed to improve their lives and contribute to society. It reduces inequality, boosts economic growth, and fosters innovation. Achieving this goal is essential for breaking the cycle of poverty and building sustainable, inclusive communities.",
-                5: "The 5th Sustainable Development Goal aims to achieve gender equality and empower all women and girls. It is important because gender inequality limits opportunities for women and girls, leading to discrimination, violence, and reduced access to education, healthcare, and economic opportunities. Promoting gender equality ensures that everyone, regardless of gender, has the same opportunities and rights, leading to stronger, more inclusive societies and sustainable development for all.",
-                6: "The 6th Sustainable Development Goal aims to ensure the availability and sustainable management of water and sanitation for all. It is important because access to clean water and sanitation is fundamental for health, well-being, and economic development. Lack of clean water and sanitation leads to waterborne diseases, malnutrition, and environmental degradation. Ensuring universal access to these resources is essential for improving public health, reducing poverty, and promoting sustainable ecosystems.",
-                7: "The 7th Sustainable Development Goal aims to ensure access to affordable, reliable, sustainable, and modern energy for all. It is important because energy is crucial for economic growth, improving living standards, and enhancing education and healthcare. Access to clean energy helps reduce reliance on fossil fuels, lowers greenhouse gas emissions, and combats climate change. Achieving this goal promotes environmental sustainability, reduces energy poverty, and contributes to a more equitable and prosperous world.",
-                8: "The 8th Sustainable Development Goal aims to promote sustained, inclusive, and sustainable economic growth, full and productive employment, and decent work for all. It is important because creating decent jobs and fostering economic growth is essential for reducing poverty and inequality. This goal ensures that people have access to fair wages, safe working conditions, and opportunities for advancement, contributing to overall social well-being and economic stability. It also helps build resilient economies that can adapt to challenges such as technological change and climate impacts.",
-                9: "The 9th Sustainable Development Goal aims to build resilient infrastructure, promote inclusive and sustainable industrialization, and foster innovation. It is important because strong infrastructure and innovation drive economic growth, create jobs, and improve living standards. Sustainable industrialization and the development of new technologies help reduce environmental impacts while enhancing productivity and access to services like transportation, communication, and energy. Achieving this goal supports long-term development and resilience, particularly in the face of global challenges like climate change and urbanization.",
-                10: "This sustainable development goal focuses on reducing inequalities within and among countries. Income inequality, the refugee crises, and inequality indexes all show that certain areas and countries are highly more beneficial to live in than others. Living standards between countries are very unbalanced.",
-                11: "This goal promotes making cities and human settlements safer, resilient, and sustainable through use of national urban policies, more access to public spaces, convenient public transportation, and the reduction of slums.",
-                12: "Ensuring sustainable consumption and production patterns, as a goal, aims to reduce climate change and negative environmental impacts.",
-                13: "Climate action is a goal involving the fight against climate change and its impacts. Rising greenhouse gas emissions, an average global temperature increase, and increased spending due to climate change are all negative results of climate change.",
-                14: "The Life Below Water goal focuses on conserving and sustainably using our oceans, seas and marine resources for sustainable development. We, as a population, rely heavily on our oceans for food, tourism, recreational activities, and global trade. In fact, 3 billion people rely on the ocean for their livelihood. However, our oceans are under severe threat. Over half of key marine biodiversity areas are unprotected, and dead zones, zones lacking oxygen to support marine life, are rising. It is thus imperative we protect our oceans better.",
-                15: "This goal overall promotes the health of land life. It includes protecting, restoring, and promoting land ecosystems, managing forests sustainably. Combatting desertification and halting and reversing land degradation and biodiversity loss. With many species under threat and ever-increasing biodiversity loss, it is essential we take better care of land ecosystems.",
-                16: "This goal involves reducing conflict, insecurity, and weak institutions by means of promoting peace and inclusivity for sustainable development and justice for all.",
-                17: "This last goal aims to help realize strong partnership and global cooperation for the SDGs."
-            };
+    let currentSdgNumber = 1;
 
+    function updateModalContent(sdgNumber) {
+        currentSdgNumber = sdgNumber;
+        modalTitle.textContent = `Goal ${sdgNumber}`;
+        modalContent.textContent = sdgDescriptions[sdgNumber];
+    }
 
-            sdgBoxes.forEach(box => {
-                box.addEventListener('click', (event) => {
-                    event.preventDefault(); // Prevents scrolling to top
-                    const sdgNumber = box.dataset.sdg;
-                    modalTitle.textContent = `Goal ${sdgNumber}`;
-                    modalContent.textContent = sdgDescriptions[sdgNumber];
-                    modal.style.display = 'flex';
-                });
-            });
-
-            closeModalBtn.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
-
-            modal.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
+    sdgBoxes.forEach(box => {
+        box.addEventListener('click', (event) => {
+            event.preventDefault();
+            const sdgNumber = parseInt(box.dataset.sdg);
+            updateModalContent(sdgNumber);
+            modal.style.display = 'flex';
         });
+    });
+
+    prevBtn.addEventListener('click', () => {
+        currentSdgNumber = currentSdgNumber > 1 ? currentSdgNumber - 1 : 17;
+        updateModalContent(currentSdgNumber);
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentSdgNumber = currentSdgNumber < 17 ? currentSdgNumber + 1 : 1;
+        updateModalContent(currentSdgNumber);
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
     </script>
 </body>
 </html>
