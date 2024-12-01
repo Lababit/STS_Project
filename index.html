@@ -279,7 +279,18 @@
 
 
     <script>
+        
       document.addEventListener("DOMContentLoaded", () => {
+           // Add event listener to hero-cta button
+        document.getElementById("hero-cta").addEventListener("click", function() {
+            // Add smooth scrolling
+            document.getElementById("gallery").scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Initialize GSAP animation
+        gsap.from("#hero-title", { opacity: 0, y: 100, duration: 1.5 });
+        gsap.from("#hero-subtitle", { opacity: 0, y: 100, duration: 1.5, delay: 0.5 });
+        gsap.from("#hero-cta", { opacity: 0, y: 100, duration: 1.5, delay: 1 });
     const sdgBoxes = document.querySelectorAll('.sdg-item');
     const modal = document.getElementById('sdg-modal');
     const closeModalBtn = document.getElementById('close-modal');
@@ -287,10 +298,6 @@
     const modalContent = document.getElementById('modal-content');
     const prevBtn = document.getElementById('prev-sdg');
     const nextBtn = document.getElementById('next-sdg');
-                      gsap.fromTo('#hero-title', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
-            gsap.fromTo('#hero-subtitle', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: 'power3.out' });
-            gsap.fromTo('#hero-cta', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, delay: 0.6, ease: 'power3.out' });
-
     const sdgDescriptions = {
         1: "The 1st Sustainable Development Goal aims to end poverty in all its forms worldwide. It is important because poverty deprives people of basic needs like food, shelter, healthcare, and education, leading to inequality and vulnerability. Reducing poverty improves quality of life, promotes economic growth, and creates more stable and equitable societies, laying the foundation for achieving other global goals.",
         2: "The 2nd Sustainable Development Goal focuses on ending hunger, achieving food security, improving nutrition, and promoting sustainable agriculture. It is important because hunger and malnutrition harm millions of people, particularly children, affecting their health, development, and productivity. Addressing hunger ensures everyone has access to nutritious food, reduces poverty, and supports sustainable farming practices, which are essential for building a healthier and more resilient world.",
